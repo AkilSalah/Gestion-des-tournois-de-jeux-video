@@ -1,9 +1,29 @@
 package org.GestionDesTournois.Models;
 
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "players")
 public class Player {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull(message = "Le pseudo ne peut pas être nul.")
+    @Size(min = 1, max = 50, message = "Le pseudo doit contenir entre 1 et 50 caractères.")
     private String pseudo;
+
+    @Min(value = 10, message = "L'âge minimum est de 10 ans.")
+    @Max(value = 100, message = "L'âge maximum est de 100 ans.")
     private int age;
+
+    @ManyToOne
+    @JoinColumn(name = "equipe_id")
     private Team equipe;
 
     public Player(int id, String pseudo, int age, Team equipe) {

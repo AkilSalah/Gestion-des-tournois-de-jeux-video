@@ -1,12 +1,31 @@
 package org.GestionDesTournois.Models;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
+@Entity
+@Table(name = "teams")
 public class Team {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull(message = "Le nom de l'équipe ne peut pas être nul.")
+    @Size(min = 1, max = 50, message = "Le nom de l'équipe doit contenir entre 1 et 50 caractères.")
     private String nom;
+
+    @OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Player> players;
+
+    @ManyToOne
+    @JoinColumn(name = "tournoi_id")
     private Tournoi tournoi;
+
+    @Min(value = 0, message = "Le classement doit être un nombre positif ou zéro.")
     private int classement;
 
     public Team(int id, String nom, List<Player> players, Tournoi tournoi, int classement) {

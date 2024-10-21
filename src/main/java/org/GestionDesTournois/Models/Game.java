@@ -1,10 +1,28 @@
 package org.GestionDesTournois.Models;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
+
+@Entity
+@Table(name = "games")
 public class Game {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nom ;
-    private int difficulte;
-    private  int dureeMoyenneMatch;
+
+    @NotBlank(message = "Le nom du jeu ne doit pas être vide")
+    @Size(min = 4, max = 50, message = "Le nom du jeu doit comporter entre 2 et 50 caractères")
+    private String nom;
+
+    @Min(value = 1, message = "La difficulté doit être au minimum de 1")
+    @Max(value = 2, message = "La difficulté doit être au maximum de 2")
+    private double difficulte;
+
+    @NotNull(message = "La durée moyenne du match est obligatoire")
+    @Min(value = 5, message = "La durée moyenne doit être d'au moins 5 minutes")
+    private int dureeMoyenneMatch;
 
     public Game(int id, String nom, int difficulte, int dureeMoyenneMatch) {
         this.id = id;
@@ -38,7 +56,7 @@ public class Game {
         this.nom = nom;
     }
 
-    public int getDifficulte() {
+    public double getDifficulte() {
         return difficulte;
     }
 
