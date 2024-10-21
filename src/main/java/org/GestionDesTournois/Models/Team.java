@@ -2,14 +2,14 @@ package org.GestionDesTournois.Models;
 
 import java.util.List;
 
-public class team {
+public class Team {
     private int id;
     private String nom;
-    private List<player> players;
-    private tournoi tournoi;
+    private List<Player> players;
+    private Tournoi tournoi;
     private int classement;
 
-    public team(int id, String nom, List<player> players, org.GestionDesTournois.Models.tournoi tournoi, int classement) {
+    public Team(int id, String nom, List<Player> players, Tournoi tournoi, int classement) {
         this.id = id;
         this.nom = nom;
         this.players = players;
@@ -17,10 +17,10 @@ public class team {
         this.classement = classement;
     }
 
-    public team() {
+    public Team() {
     }
 
-    public team(String nom, List<player> players, org.GestionDesTournois.Models.tournoi tournoi, int classement) {
+    public Team(String nom, List<Player> players, Tournoi tournoi, int classement) {
         this.nom = nom;
         this.players = players;
         this.tournoi = tournoi;
@@ -43,19 +43,19 @@ public class team {
         this.nom = nom;
     }
 
-    public List<player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<player> players) {
+    public void setPlayers(List<Player> players) {
         this.players = players;
     }
 
-    public org.GestionDesTournois.Models.tournoi getTournoi() {
+    public Tournoi getTournoi() {
         return tournoi;
     }
 
-    public void setTournoi(org.GestionDesTournois.Models.tournoi tournoi) {
+    public void setTournoi(Tournoi tournoi) {
         this.tournoi = tournoi;
     }
 

@@ -1,22 +1,22 @@
 package org.GestionDesTournois.Models;
 
-public class player {
+public class Player {
     private int id;
     private String pseudo;
     private int age;
-    private team equipe;
+    private Team equipe;
 
-    public player(int id, String pseudo, int age, team equipe) {
+    public Player(int id, String pseudo, int age, Team equipe) {
         this.id = id;
         this.pseudo = pseudo;
         this.age = age;
         this.equipe = equipe;
     }
 
-    public player() {
+    public Player() {
     }
 
-    public player(String pseudo, int age, team equipe) {
+    public Player(String pseudo, int age, Team equipe) {
         this.pseudo = pseudo;
         this.age = age;
         this.equipe = equipe;
@@ -46,11 +46,11 @@ public class player {
         this.age = age;
     }
 
-    public team getEquipe() {
+    public Team getEquipe() {
         return equipe;
     }
 
-    public void setEquipe(team equipe) {
+    public void setEquipe(Team equipe) {
         this.equipe = equipe;
     }
 

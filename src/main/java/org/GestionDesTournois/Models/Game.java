@@ -1,22 +1,22 @@
 package org.GestionDesTournois.Models;
 
-public class game {
+public class Game {
     private int id;
     private String nom ;
     private int difficulte;
     private  int dureeMoyenneMatch;
 
-    public game(int id, String nom, int difficulte, int dureeMoyenneMatch) {
+    public Game(int id, String nom, int difficulte, int dureeMoyenneMatch) {
         this.id = id;
         this.nom = nom;
         this.difficulte = difficulte;
         this.dureeMoyenneMatch = dureeMoyenneMatch;
     }
 
-    public game() {
+    public Game() {
     }
 
-    public game(String nom, int difficulte, int dureeMoyenneMatch) {
+    public Game(String nom, int difficulte, int dureeMoyenneMatch) {
         this.nom = nom;
         this.difficulte = difficulte;
         this.dureeMoyenneMatch = dureeMoyenneMatch;

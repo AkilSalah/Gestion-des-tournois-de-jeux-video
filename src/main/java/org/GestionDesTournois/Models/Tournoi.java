@@ -3,20 +3,20 @@ package org.GestionDesTournois.Models;
 import java.time.LocalDate;
 import java.util.List;
 
-public class tournoi {
+public class Tournoi {
     private int id;
     private String title;
-    private game game;
+    private Game game;
     private LocalDate dateDebut ;
     private LocalDate dateFin;
     private int nombreSpectateurs;
-    private List<team> teams;
+    private List<Team> teams;
     private int dureeEstimee;
     private int tempsPause;
     private int tempsCeremonie;
     private StatutTournoi statut;
 
-    public tournoi(int id, String title, org.GestionDesTournois.Models.game game, LocalDate dateDebut, LocalDate dateFin, int nombreSpectateurs, List<team> teams, int dureeEstimee, int tempsPause, int tempsCeremonie, StatutTournoi statut) {
+    public Tournoi(int id, String title, Game game, LocalDate dateDebut, LocalDate dateFin, int nombreSpectateurs, List<Team> teams, int dureeEstimee, int tempsPause, int tempsCeremonie, StatutTournoi statut) {
         this.id = id;
         this.title = title;
         this.game = game;
@@ -30,10 +30,10 @@ public class tournoi {
         this.statut = statut;
     }
 
-    public tournoi() {
+    public Tournoi() {
     }
 
-    public tournoi(String title, org.GestionDesTournois.Models.game game, LocalDate dateDebut, LocalDate dateFin, int nombreSpectateurs, List<team> teams, int dureeEstimee, int tempsPause, int tempsCeremonie, StatutTournoi statut) {
+    public Tournoi(String title, Game game, LocalDate dateDebut, LocalDate dateFin, int nombreSpectateurs, List<Team> teams, int dureeEstimee, int tempsPause, int tempsCeremonie, StatutTournoi statut) {
         this.title = title;
         this.game = game;
         this.dateDebut = dateDebut;
@@ -62,11 +62,11 @@ public class tournoi {
         this.title = title;
     }
 
-    public org.GestionDesTournois.Models.game getGame() {
+    public Game getGame() {
         return game;
     }
 
-    public void setGame(org.GestionDesTournois.Models.game game) {
+    public void setGame(Game game) {
         this.game = game;
     }
 
@@ -94,11 +94,11 @@ public class tournoi {
         this.nombreSpectateurs = nombreSpectateurs;
     }
 
-    public List<team> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<team> teams) {
+    public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 
