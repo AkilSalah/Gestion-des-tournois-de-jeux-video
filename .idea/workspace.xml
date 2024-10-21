@@ -5,27 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9b2bd5-75a4-4c75-b68a-fc052096f6e1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/gameImplementation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/playerImplementation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/teamImplementation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/tournoiImplementation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TournoiInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/gameInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/playerInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/teamInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetierImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/gameService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/playerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/teamService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Utils/validation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/gameView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/playerView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/teamView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/tournoiView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/StatutTournoi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/tournoi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/tournoi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +22,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
