@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9b2bd5-75a4-4c75-b68a-fc052096f6e1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/team.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/tournoi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistance.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/gameImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/playerImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/teamImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/tournoiImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TournoiInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/gameInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/playerInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/teamInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +24,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -49,7 +48,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "C:/Users/ycode/Java/GestionDesTournois/src/main/java/org/example/Main.java"
   }
