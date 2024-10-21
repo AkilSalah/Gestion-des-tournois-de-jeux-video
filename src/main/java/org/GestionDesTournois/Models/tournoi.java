@@ -1,2 +1,4 @@
-package org.GestionDesTournois.Models;public class tournoi {
+package org.GestionDesTournois.Models;
+
+public class tournoi {
 }
