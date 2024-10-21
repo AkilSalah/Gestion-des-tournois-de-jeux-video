@@ -2,6 +2,7 @@ package org.GestionDesTournois.Models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -16,19 +17,19 @@ public class Tournoi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "Le titre du tournoi ne peut pas être nul.")
+    @NotBlank(message = "Le titre du tournoi ne peut pas être nul.")
     @Size(min = 5, max = 100, message = "Le titre du tournoi doit contenir entre 1 et 100 caractères.")
     private String title;
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
-    @NotNull(message = "Le jeu associé ne peut pas être nul.")
+    @NotBlank(message = "Le jeu associé ne peut pas être nul.")
     private Game game;
 
-    @NotNull(message = "La date de début ne peut pas être nulle.")
+    @NotBlank(message = "La date de début ne peut pas être nulle.")
     private LocalDate dateDebut;
 
-    @NotNull(message = "La date de fin ne peut pas être nulle.")
+    @NotBlank(message = "La date de fin ne peut pas être nulle.")
     private LocalDate dateFin;
 
     @Min(value = 0, message = "Le nombre de spectateurs doit être positif ou zéro.")
@@ -47,7 +48,7 @@ public class Tournoi {
     private int tempsCeremonie;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Le statut du tournoi ne peut pas être nul.")
+    @NotBlank(message = "Le statut du tournoi ne peut pas être nul.")
     private StatutTournoi statut;
     public Tournoi(int id, String title, Game game, LocalDate dateDebut, LocalDate dateFin, int nombreSpectateurs, List<Team> teams, int dureeEstimee, int tempsPause, int tempsCeremonie, StatutTournoi statut) {
         this.id = id;

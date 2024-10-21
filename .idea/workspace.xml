@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9b2bd5-75a4-4c75-b68a-fc052096f6e1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Utils/JpaUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Tournoi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Tournoi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/gameImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/gameImplementation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistance.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistance.xml" afterDir="false" />
     </list>

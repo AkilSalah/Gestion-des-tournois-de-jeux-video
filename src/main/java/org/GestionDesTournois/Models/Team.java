@@ -2,6 +2,7 @@ package org.GestionDesTournois.Models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -14,7 +15,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "Le nom de l'équipe ne peut pas être nul.")
+    @NotBlank(message = "Le nom de l'équipe ne peut pas être nul.")
     @Size(min = 1, max = 50, message = "Le nom de l'équipe doit contenir entre 1 et 50 caractères.")
     private String nom;
 

@@ -2,10 +2,7 @@ package org.GestionDesTournois.Models;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "players")
@@ -14,7 +11,7 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "Le pseudo ne peut pas être nul.")
+    @NotBlank(message = "Le pseudo ne peut pas être nul.")
     @Size(min = 1, max = 50, message = "Le pseudo doit contenir entre 1 et 50 caractères.")
     private String pseudo;
 
