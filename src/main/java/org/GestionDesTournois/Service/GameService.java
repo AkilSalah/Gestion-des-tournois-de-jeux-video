@@ -1,4 +1,4 @@
 package org.GestionDesTournois.Service;
 
-public class gameService {
+public class GameService {
 }

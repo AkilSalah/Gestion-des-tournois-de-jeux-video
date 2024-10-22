@@ -50,6 +50,7 @@ public class Tournoi {
     @Enumerated(EnumType.STRING)
     @NotBlank(message = "Le statut du tournoi ne peut pas être nul.")
     private StatutTournoi statut;
+
     public Tournoi(int id, String title, Game game, LocalDate dateDebut, LocalDate dateFin, int nombreSpectateurs, List<Team> teams, int dureeEstimee, int tempsPause, int tempsCeremonie, StatutTournoi statut) {
         this.id = id;
         this.title = title;

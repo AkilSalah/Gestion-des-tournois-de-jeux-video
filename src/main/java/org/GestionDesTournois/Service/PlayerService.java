@@ -1,4 +1,4 @@
 package org.GestionDesTournois.Service;
 
-public interface TournoiMetier {
+public class PlayerService {
 }

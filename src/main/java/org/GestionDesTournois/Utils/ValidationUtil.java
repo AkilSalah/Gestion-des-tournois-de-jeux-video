@@ -1,4 +1,4 @@
 package org.GestionDesTournois.Utils;
 
-public class validation {
+public class ValidationUtil {
 }

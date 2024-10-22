@@ -1,14 +1,14 @@
 package org.GestionDesTournois.Repository.Implementation;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
 import org.GestionDesTournois.Models.Game;
-import org.GestionDesTournois.Repository.Interfaces.gameInterface;
+import org.GestionDesTournois.Repository.Interfaces.GameInterface;
 import org.GestionDesTournois.Utils.JpaUtil;
+
 import java.util.List;
 import java.util.Optional;
 
-public class gameImplementation implements gameInterface {
+public class GameImplementation implements GameInterface {
 
     EntityManager em = JpaUtil.getInstance().getEntityManager();
 
@@ -29,10 +29,15 @@ public class gameImplementation implements gameInterface {
     @Override
     public boolean updateGame(Game game) {
         try {
-            em.getTransaction().begin();
-            em.merge(game);
-            em.getTransaction().commit();
-            return true;
+            Optional<Game> gameOptional = getGameById(game.getId());
+            if (gameOptional.isPresent()) {
+                em.getTransaction().begin();
+                em.merge(game);
+                em.getTransaction().commit();
+                return true;
+            }else {
+                return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -62,8 +67,7 @@ public class gameImplementation implements gameInterface {
     @Override
     public List<Game> getAllGames() {
         try {
-            TypedQuery<Game> query = em.createQuery("SELECT g FROM Game g", Game.class);
-            return query.getResultList();
+            return em.createQuery("SELECT g FROM Game g", Game.class).getResultList();
         } finally {
             em.close();
         }
