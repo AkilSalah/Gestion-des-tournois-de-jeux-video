@@ -11,5 +11,5 @@ public interface TournoiInterface {
     boolean deleteTournoi(int id);
     List<Tournoi> getAllTournois();
     Optional<Tournoi> getTournoiById(int id);
-    double calculerDureeEstimeeTournoi(int tournoiId);
+    int calculerDureeEstimeeTournoi(int tournoiId);
 }

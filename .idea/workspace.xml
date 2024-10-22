@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9b2bd5-75a4-4c75-b68a-fc052096f6e1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/GameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/Interface/TournoiMetier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/Interface/TournoiMetier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/PlayerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetierImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetierImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiExtension.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TournoiInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TournoiInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/gameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/playerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/PlayerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/teamView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/TeamView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/tournoiView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/TournoiView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

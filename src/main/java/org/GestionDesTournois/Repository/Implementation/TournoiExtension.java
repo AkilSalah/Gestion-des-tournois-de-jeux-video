@@ -13,14 +13,14 @@ public class TournoiExtension implements TournoiInterface {
 
     private EntityManager em = JpaUtil.getInstance().getEntityManager();
     @Override
-    public double calculerDureeEstimeeTournoi(int tournoiId){
+    public int calculerDureeEstimeeTournoi(int tournoiId){
         try {
            Tournoi tournoi = em.find(Tournoi.class,tournoiId);
            if (tournoi != null){
                int teamNb = tournoi.getTeams().size();
                int dureMoyenne = tournoi.getDureeEstimee();
                int tempsPause = tournoi.getTempsPause();
-               double difficulte = tournoi.getGame().getDifficulte();
+               int difficulte = tournoi.getGame().getDifficulte();
                int tempsCeremonies = tournoi.getTempsCeremonie();
                return (teamNb * dureMoyenne * difficulte)+(tempsPause)+(tempsCeremonies);
            }

@@ -82,7 +82,7 @@ public class TournoiImplementation implements TournoiInterface {
     }
 
     @Override
-    public double calculerDureeEstimeeTournoi(int tournoiId) {
+    public int calculerDureeEstimeeTournoi(int tournoiId) {
         Optional<Tournoi> tournoi = getTournoiById(tournoiId);
         if (tournoi.isPresent()){
             Tournoi tournoi1 = tournoi.get();

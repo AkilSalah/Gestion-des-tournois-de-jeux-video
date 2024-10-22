@@ -1,4 +1,5 @@
 package org.GestionDesTournois.View;
 
-public class teamView {
+public class PlayerView {
+
 }

@@ -17,8 +17,8 @@ public class Game {
     private String nom;
 
     @Min(value = 1, message = "La difficulté doit être au minimum de 1")
-    @Max(value = 2, message = "La difficulté doit être au maximum de 2")
-    private double difficulte;
+    @Max(value = 3, message = "La difficulté doit être au maximum de 2")
+    private int difficulte;
 
     @NotBlank(message = "La durée moyenne du match est obligatoire")
     @Min(value = 5, message = "La durée moyenne doit être d'au moins 5 minutes")
@@ -56,7 +56,7 @@ public class Game {
         this.nom = nom;
     }
 
-    public double getDifficulte() {
+    public int getDifficulte() {
         return difficulte;
     }
 
