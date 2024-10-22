@@ -5,23 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9b2bd5-75a4-4c75-b68a-fc052096f6e1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiExtension.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Utils/LoggerUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Tournoi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Tournoi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/gameImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/GameImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/playerImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/PlayerImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/teamImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TeamImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/tournoiImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TournoiInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TournoiInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/gameInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/GameInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/playerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/PlayerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/teamInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TeamInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/Interface/TournoiMetier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/gameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/GameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/playerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/PlayerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/teamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Utils/validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Utils/ValidationUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/Interface/TournoiMetier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/Interface/TournoiMetier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/PlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TeamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetierImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetierImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,17 +47,42 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "C:/Users/ycode/Java/GestionDesTournois/src/main/java/org/example/Main.java"
+    "onboarding.tips.debug.path": "C:/Users/ycode/Java/GestionDesTournois/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.GestionDesTournois.Models" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.GestionDesTournois.View.Main" />
+      <module name="GestionDesTournois" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.GestionDesTournois.View.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -77,16 +94,5 @@
       <updated>1729523405075</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
