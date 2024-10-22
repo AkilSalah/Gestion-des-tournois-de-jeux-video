@@ -21,7 +21,7 @@ public class GameView {
             System.out.println("2. Mettre à jour un jeu");
             System.out.println("3. Supprimer un jeu");
             System.out.println("4. Afficher tous les jeux");
-            System.out.println("5. Quitter");
+            System.out.println("5. Quitter le menu des jeux");
             System.out.print("Choisissez une option : ");
 
             choice = ValidationUtil.validationInt();
@@ -151,7 +151,7 @@ public class GameView {
         if (games.isEmpty()){
             LoggerUtil.logInfo("Aucun jeu trouvé");
         }else {
-            games.stream().forEach(System.out::println);
+            games.forEach(System.out::println);
         }
     }
 
