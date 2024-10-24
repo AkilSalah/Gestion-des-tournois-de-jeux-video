@@ -68,13 +68,12 @@ public class Tournoi {
     public Tournoi() {
     }
 
-    public Tournoi(String title, Game game, LocalDate dateDebut, LocalDate dateFin, int nombreSpectateurs, List<Team> teams, int dureeEstimee, int tempsPause, int tempsCeremonie, StatutTournoi statut) {
+    public Tournoi(String title, Game game, LocalDate dateDebut, LocalDate dateFin, int nombreSpectateurs, int dureeEstimee, int tempsPause, int tempsCeremonie, StatutTournoi statut) {
         this.title = title;
         this.game = game;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.nombreSpectateurs = nombreSpectateurs;
-        this.teams = teams;
         this.dureeEstimee = dureeEstimee;
         this.tempsPause = tempsPause;
         this.tempsCeremonie = tempsCeremonie;

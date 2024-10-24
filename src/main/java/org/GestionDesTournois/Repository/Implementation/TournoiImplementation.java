@@ -1,6 +1,7 @@
 package org.GestionDesTournois.Repository.Implementation;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import org.GestionDesTournois.Models.Tournoi;
 import org.GestionDesTournois.Repository.Interfaces.TournoiInterface;
 import org.GestionDesTournois.Utils.JpaUtil;
@@ -10,29 +11,37 @@ import java.util.Optional;
 
 public class TournoiImplementation implements TournoiInterface {
 
-    private EntityManager em = JpaUtil.getInstance().getEntityManager();
+    private EntityManager getEntityManager(){
+      return JpaUtil.getInstance().getEntityManager();
+    }
     @Override
     public boolean insertTournoi(Tournoi tournoi) {
+        EntityManager em = getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            transaction.begin();
             em.persist(tournoi);
-            em.getTransaction().commit();
+            transaction.commit();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         } finally {
-            em.close();
+            if(em.isOpen() && em!=null){
+                em.close();
+            }
         }
     }
     @Override
     public boolean updateTournoi(Tournoi tournoi) {
+        EntityManager em = getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         try {
             Optional<Tournoi> tournoiOptional = getTournoiById(tournoi.getId());
             if (tournoiOptional.isPresent()) {
-                em.getTransaction().begin();
+                transaction.begin();
                 em.merge(tournoi);
-                em.getTransaction().commit();
+                transaction.commit();
                 return true;
             } else {
                 return false;
@@ -41,11 +50,15 @@ public class TournoiImplementation implements TournoiInterface {
             e.printStackTrace();
             return false;
         } finally {
-            em.close();
+            if (em!=null && em.isOpen()) {
+                em.close();
+            }
         }
     }
     @Override
     public boolean deleteTournoi(int id) {
+        EntityManager em = getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         try {
             em.getTransaction().begin();
             Tournoi tournoi = em.find(Tournoi.class, id);
@@ -60,11 +73,13 @@ public class TournoiImplementation implements TournoiInterface {
             e.printStackTrace();
             return false;
         } finally {
-            em.close();
-        }
+            if (em!=null && em.isOpen()) {
+                em.close();
+            }        }
     }
     @Override
     public List<Tournoi> getAllTournois() {
+        EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT t FROM Tournoi t", Tournoi.class).getResultList();
         } finally {
@@ -73,6 +88,7 @@ public class TournoiImplementation implements TournoiInterface {
     }
     @Override
     public Optional<Tournoi> getTournoiById(int id) {
+        EntityManager em = getEntityManager();
         try {
             Tournoi tournoi = em.find(Tournoi.class, id);
             return Optional.ofNullable(tournoi);

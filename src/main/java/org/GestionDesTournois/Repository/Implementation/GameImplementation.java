@@ -1,6 +1,7 @@
 package org.GestionDesTournois.Repository.Implementation;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import org.GestionDesTournois.Models.Game;
 import org.GestionDesTournois.Repository.Interfaces.GameInterface;
 import org.GestionDesTournois.Utils.JpaUtil;
@@ -10,77 +11,107 @@ import java.util.Optional;
 
 public class GameImplementation implements GameInterface {
 
-    EntityManager em = JpaUtil.getInstance().getEntityManager();
+    private EntityManager getEntityManager() {
+        return JpaUtil.getInstance().getEntityManager();
+    }
 
     @Override
     public boolean insertGame(Game game) {
+        EntityManager em = getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            transaction.begin();
             em.persist(game);
-            em.getTransaction().commit();
+            transaction.commit();
             return true;
         } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
             e.printStackTrace();
             return false;
         } finally {
-            em.close();
-        }    }
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
 
     @Override
     public boolean updateGame(Game game) {
+        EntityManager em = getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         try {
             Optional<Game> gameOptional = getGameById(game.getId());
             if (gameOptional.isPresent()) {
-                em.getTransaction().begin();
+                transaction.begin();
                 em.merge(game);
-                em.getTransaction().commit();
+                transaction.commit();
                 return true;
-            }else {
+            } else {
                 return false;
             }
         } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
             e.printStackTrace();
             return false;
         } finally {
-            em.close();
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     @Override
     public boolean deleteGame(int id) {
+        EntityManager em = getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            transaction.begin();
             Game game = em.find(Game.class, id);
             if (game != null) {
                 em.remove(game);
-                em.getTransaction().commit();
+                transaction.commit();
                 return true;
             }
             return false;
         } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
             e.printStackTrace();
             return false;
         } finally {
-            em.close();
-        }    }
-
-    @Override
-    public List<Game> getAllGames() {
-        try {
-            return em.createQuery("SELECT g FROM Game g", Game.class).getResultList();
-        } finally {
-            em.close();
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
 
+    @Override
+    public List<Game> getAllGames() {
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT g FROM Game g", Game.class).getResultList();
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
 
     @Override
     public Optional<Game> getGameById(int id) {
+        EntityManager em = getEntityManager();
         try {
             Game game = em.find(Game.class, id);
             return Optional.ofNullable(game);
         } finally {
-            em.close();
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
 }

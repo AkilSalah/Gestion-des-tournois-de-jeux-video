@@ -12,7 +12,6 @@
 
     <context:annotation-config/>
 
-
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="Akil" />
         <property name="persistenceProviderClass" value="org.hibernate.jpa.HibernatePersistenceProvider"/>
@@ -20,6 +19,21 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
-
+    <bean id="gameImplementation" class="org.GestionDesTournois.Repository.Implementation.GameImplementation"/>
+        <bean id="gameService" class="org.GestionDesTournois.Service.GameService">
+            <constructor-arg ref="gameImplementation"/>
+        </bean>
+        <bean id="gameView" class="org.GestionDesTournois.View.GameView">
+            <constructor-arg ref="gameService"/>
+        </bean>
+    <bean id="tournoiImplementation" class="org.GestionDesTournois.Repository.Implementation.TournoiImplementation"/>
+    <bean id="tournoiExtension" class="org.GestionDesTournois.Repository.Implementation.TournoiExtension"/>
+        <bean id="tournoiService" class="org.GestionDesTournois.Service.TournoiMetierImpl">
+            <constructor-arg ref="tournoiImplementation"/>
+            <constructor-arg ref="tournoiExtension"/>
+        </bean>
+        <bean id="tournoiView" class="org.GestionDesTournois.View.TournoiView">
+            <constructor-arg ref="tournoiService"/>
+        </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

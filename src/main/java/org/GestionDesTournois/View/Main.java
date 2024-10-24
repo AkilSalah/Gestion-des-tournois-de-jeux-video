@@ -1,5 +1,6 @@
 package org.GestionDesTournois.View;
 
+
 import org.GestionDesTournois.Utils.LoggerUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,10 +12,8 @@ public class Main {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         LoggerUtil.logInfo("Application context loaded");
+        GameView gameView = context.getBean("gameView", GameView.class);
+        gameView.displayMenu();
 
-//        GameView gameView = context.getBean("gameView", GameView.class);
-//
-//        // Afficher le menu
-//        gameView.displayMenu();
     }
 }
