@@ -12,8 +12,11 @@ public class Main {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         LoggerUtil.logInfo("Application context loaded");
-        GameView gameView = context.getBean("gameView", GameView.class);
-        gameView.displayMenu();
+//        GameView gameView = context.getBean("gameView", GameView.class);
+//        gameView.displayMenu();
+        TournoiView tournoiView = context.getBean("tournoiView", TournoiView.class);
+        tournoiView.tournoiMenu();
+
 
     }
 }

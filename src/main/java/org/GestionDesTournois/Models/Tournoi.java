@@ -177,7 +177,6 @@ public class Tournoi {
                 ", dateDebut=" + dateDebut +
                 ", dateFin=" + dateFin +
                 ", nombreSpectateurs=" + nombreSpectateurs +
-                ", teams=" + teams +
                 ", dureeEstimee=" + dureeEstimee +
                 ", tempsPause=" + tempsPause +
                 ", tempsCeremonie=" + tempsCeremonie +

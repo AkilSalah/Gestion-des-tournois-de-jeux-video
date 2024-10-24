@@ -8,6 +8,7 @@ import org.GestionDesTournois.Service.TournoiMetierImpl;
 import org.GestionDesTournois.Utils.DateUtil;
 import org.GestionDesTournois.Utils.LoggerUtil;
 import org.GestionDesTournois.Utils.ValidationUtil;
+import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,7 +22,7 @@ public class TournoiView {
         this.gameService = gameService;
     }
 
-    public void playerMenu() {
+    public void tournoiMenu() {
         int choice;
         do {
             LoggerUtil.logInfo("\n--- Menu Gestion des Tournoi ---");
@@ -296,14 +297,26 @@ public class TournoiView {
         }
     }
 
-    public void displayTournois(){
+    public void displayTournois() {
         LoggerUtil.logInfo("\n--- Liste de tous les tournois ---");
         List<Tournoi> tournois = tournoiService.getAllTournois();
+
         if (tournois.isEmpty()) {
             LoggerUtil.logInfo("Aucun tournoi trouvé.");
-        }else {
-            tournois.forEach(System.out::println);
+        } else {
+            tournois.forEach(tournoi -> {
+                LoggerUtil.logInfo(tournoi.toString());
+
+                if (tournoi.getTeams() != null && !tournoi.getTeams().isEmpty()) {
+                    LoggerUtil.logInfo("Nombre d'équipes : " + tournoi.getTeams().size());
+                    tournoi.getTeams().forEach(team -> LoggerUtil.logInfo(team.toString()));
+                } else {
+                    LoggerUtil.logInfo("Aucune équipe associée.");
+                }
+            });
         }
     }
+
+
 
 }

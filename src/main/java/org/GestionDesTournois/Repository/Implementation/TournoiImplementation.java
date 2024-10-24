@@ -81,7 +81,7 @@ public class TournoiImplementation implements TournoiInterface {
     public List<Tournoi> getAllTournois() {
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT t FROM Tournoi t", Tournoi.class).getResultList();
+            return em.createQuery("SELECT t FROM Tournoi t LEFT JOIN FETCH t.teams", Tournoi.class).getResultList();
         } finally {
             em.close();
         }
