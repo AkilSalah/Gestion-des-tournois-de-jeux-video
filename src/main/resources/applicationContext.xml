@@ -42,8 +42,12 @@
         <bean id="teamView" class="org.GestionDesTournois.View.TeamView">
             <constructor-arg ref="teamService"/>
         </bean>
-
-
-
+    <bean id="playerImplementation" class="org.GestionDesTournois.Repository.Implementation.PlayerImplementation" />
+    <bean id="playerService" class="org.GestionDesTournois.Service.PlayerService">
+        <constructor-arg ref="playerImplementation"/>
+    </bean>
+    <bean id="playerView" class="org.GestionDesTournois.View.PlayerView">
+        <constructor-arg ref="playerService"/>
+    </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

@@ -19,7 +19,7 @@ public class TeamView {
         this.tournoiMetier = tournoiMetier;
     }
 
-    public void displayMenu() {
+    public void teamMenu() {
         while (true) {
             LoggerUtil.logInfo("\n--- Menu Équipe ---");
             LoggerUtil.logInfo("1. Ajouter une équipe");

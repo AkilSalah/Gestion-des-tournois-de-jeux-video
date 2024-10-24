@@ -13,16 +13,16 @@ public class GameView {
     public GameView(GameService gameService){
     this.gameService = gameService;
     }
-    public void displayMenu() {
+    public void gameMenu() {
         int choice;
         do {
-            System.out.println("\n--- Gestion des Jeux ---");
-            System.out.println("1. Ajouter un jeu");
-            System.out.println("2. Mettre à jour un jeu");
-            System.out.println("3. Supprimer un jeu");
-            System.out.println("4. Afficher tous les jeux");
-            System.out.println("5. Quitter");
-            System.out.print("Choisissez une option : ");
+            LoggerUtil.logInfo("\n--- Gestion des Jeux ---");
+            LoggerUtil.logInfo("1. Ajouter un jeu");
+            LoggerUtil.logInfo("2. Mettre à jour un jeu");
+            LoggerUtil.logInfo("3. Supprimer un jeu");
+            LoggerUtil.logInfo("4. Afficher tous les jeux");
+            LoggerUtil.logInfo("5. Quitter");
+            LoggerUtil.logInfo("Choisissez une option : ");
 
             choice = ValidationUtil.validationInt();
             switch (choice) {
@@ -151,7 +151,7 @@ public class GameView {
         if (games.isEmpty()){
             LoggerUtil.logInfo("Aucun jeu trouvé");
         }else {
-            games.forEach(System.out::println);
+            games.forEach(game -> LoggerUtil.logInfo(game.toString()));
         }
     }
 }

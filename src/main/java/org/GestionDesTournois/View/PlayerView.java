@@ -162,7 +162,7 @@ public class PlayerView {
         if (players.isEmpty()) {
             LoggerUtil.logInfo("Aucun joueur trouvé.");
         } else {
-          players.forEach(System.out::println);
+          players.forEach(player -> LoggerUtil.logInfo(player.toString()));
         }
     }
 

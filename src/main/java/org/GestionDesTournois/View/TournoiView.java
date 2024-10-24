@@ -8,7 +8,6 @@ import org.GestionDesTournois.Service.TournoiMetierImpl;
 import org.GestionDesTournois.Utils.DateUtil;
 import org.GestionDesTournois.Utils.LoggerUtil;
 import org.GestionDesTournois.Utils.ValidationUtil;
-import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,7 +29,8 @@ public class TournoiView {
             LoggerUtil.logInfo("2. Mettre à jour une tournoi");
             LoggerUtil.logInfo("3. Supprimer une tournoi");
             LoggerUtil.logInfo("4. Afficher tous les tournois");
-            LoggerUtil.logInfo("5. Quitter");
+            LoggerUtil.logInfo("5. Calcul de la durée totale estimée du tournoi");
+            LoggerUtil.logInfo("6. Quitter");
             LoggerUtil.logInfo("Choisissez une option : ");
 
             choice = ValidationUtil.validationInt();
@@ -49,12 +49,15 @@ public class TournoiView {
                     displayTournois();
                     break;
                 case 5:
+                    calculeDureeEstimee();
+                    break;
+                case 6:
                     LoggerUtil.logInfo("Quitter le menu des tournois.");
                     return;
                 default:
                     LoggerUtil.logError("Option invalide, veuillez choisir entre 1 et 5.");
             }
-        } while (choice != 5);
+        } while (choice != 6);
     }
 
     private void addTournoi() {
@@ -314,6 +317,19 @@ public class TournoiView {
                     LoggerUtil.logInfo("Aucune équipe associée.");
                 }
             });
+        }
+    }
+    public void calculeDureeEstimee() {
+        LoggerUtil.logInfo("\n--- Calculate duree estimee ---");
+        LoggerUtil.logInfo("Entrez l'ID du tournoi :  ");
+        int tournoiId = ValidationUtil.validationInt();
+        Optional<Tournoi> tournoiOptional = tournoiService.getTournoiById(tournoiId);
+        if (tournoiOptional.isPresent()) {
+            Tournoi tournoi = tournoiOptional.get();
+          double calcul =  tournoiService.obtenirdureeEstimeeTournoi(tournoiId);
+          LoggerUtil.logInfo("La duree estimee du tournoi avec id " +tournoi.getId()+ " : " + calcul);
+        }else{
+            LoggerUtil.logInfo("La tournoi n'existe pas ! ");
         }
     }
 

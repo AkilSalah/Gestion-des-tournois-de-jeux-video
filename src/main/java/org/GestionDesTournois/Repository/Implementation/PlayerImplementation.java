@@ -1,6 +1,7 @@
 package org.GestionDesTournois.Repository.Implementation;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import org.GestionDesTournois.Models.Player;
 import org.GestionDesTournois.Repository.Interfaces.PlayerInterface;
 import org.GestionDesTournois.Utils.JpaUtil;
@@ -10,25 +11,31 @@ import java.util.Optional;
 
 public class PlayerImplementation implements PlayerInterface {
 
-    EntityManager em = JpaUtil.getInstance().getEntityManager();
-
+    EntityManager getEntityManager() {
+        return JpaUtil.getInstance().getEntityManager();
+    }
     @Override
     public boolean insertPlayer(Player player) {
+        EntityManager em = getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            transaction.begin();
             em.persist(player);
-            em.getTransaction().commit();
+            transaction.commit();
             return true;
         }catch (Exception e){
             e.printStackTrace();
             return false;
         }finally {
-            em.close();
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     @Override
     public boolean updatePlayer(Player player) {
+        EntityManager em = getEntityManager();
         try {
             Optional<Player> playerOptional = getJoueurById(player.getId());
             if (playerOptional.isPresent()){
@@ -43,12 +50,15 @@ public class PlayerImplementation implements PlayerInterface {
             e.printStackTrace();
             return false;
         }finally {
-            em.close();
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     @Override
     public boolean deletePlayer(int id) {
+        EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
             Player player = em.find(Player.class,id);
@@ -63,26 +73,34 @@ public class PlayerImplementation implements PlayerInterface {
             e.printStackTrace();
             return false;
         }finally {
-            em.close();
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     @Override
     public List<Player> getAllJoueurs() {
+        EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT p FROM Player p",Player.class).getResultList();
         }finally {
-            em.close();
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     @Override
     public Optional<Player> getJoueurById(int id) {
+        EntityManager em = getEntityManager();
         try {
             Player player = em.find(Player.class,id);
             return Optional.ofNullable(player);
         }finally {
-            em.close();
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
 }
