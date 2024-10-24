@@ -91,7 +91,6 @@ public class Team {
         return "team{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
-                ", players=" + players +
                 ", tournoi=" + tournoi +
                 ", classement=" + classement +
                 '}';

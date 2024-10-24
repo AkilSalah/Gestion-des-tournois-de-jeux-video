@@ -27,7 +27,7 @@ public class TournoiImplementation implements TournoiInterface {
             e.printStackTrace();
             return false;
         } finally {
-            if(em.isOpen() && em!=null){
+            if(em.isOpen()){
                 em.close();
             }
         }
@@ -50,7 +50,7 @@ public class TournoiImplementation implements TournoiInterface {
             e.printStackTrace();
             return false;
         } finally {
-            if (em!=null && em.isOpen()) {
+            if (em.isOpen()) {
                 em.close();
             }
         }
@@ -73,9 +73,10 @@ public class TournoiImplementation implements TournoiInterface {
             e.printStackTrace();
             return false;
         } finally {
-            if (em!=null && em.isOpen()) {
+            if (em.isOpen()) {
                 em.close();
-            }        }
+            }
+        }
     }
     @Override
     public List<Tournoi> getAllTournois() {
@@ -83,7 +84,9 @@ public class TournoiImplementation implements TournoiInterface {
         try {
             return em.createQuery("SELECT t FROM Tournoi t LEFT JOIN FETCH t.teams", Tournoi.class).getResultList();
         } finally {
-            em.close();
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
     @Override
@@ -93,7 +96,9 @@ public class TournoiImplementation implements TournoiInterface {
             Tournoi tournoi = em.find(Tournoi.class, id);
             return Optional.ofNullable(tournoi);
         } finally {
-            em.close();
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
 

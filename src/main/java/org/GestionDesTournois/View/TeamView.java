@@ -161,7 +161,15 @@ public class TeamView {
         if (teams.isEmpty()) {
             LoggerUtil.logInfo("Aucune équipe trouvée.");
         } else {
-            teams.forEach(System.out::println);
+            teams.forEach(team -> {
+                LoggerUtil.logInfo(team.toString());
+                 if (team.getNom() != null && !team.getNom().isEmpty()) {
+                     LoggerUtil.logInfo("nombre des joueurs : "+team.getPlayers().size());
+                     team.getPlayers().forEach(players -> LoggerUtil.logInfo(players.toString()));
+                     }else {
+                     LoggerUtil.logInfo("Aucune joueurs associée.");
+                 }
+            });
         }
     }
 }

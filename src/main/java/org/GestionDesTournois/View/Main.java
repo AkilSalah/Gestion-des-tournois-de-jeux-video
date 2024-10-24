@@ -14,8 +14,10 @@ public class Main {
         LoggerUtil.logInfo("Application context loaded");
 //        GameView gameView = context.getBean("gameView", GameView.class);
 //        gameView.displayMenu();
-        TournoiView tournoiView = context.getBean("tournoiView", TournoiView.class);
-        tournoiView.tournoiMenu();
+//        TournoiView tournoiView = context.getBean("tournoiView", TournoiView.class);
+//        tournoiView.tournoiMenu();
+          TeamView teamView = context.getBean("teamView", TeamView.class);
+          teamView.displayMenu();
 
 
     }
