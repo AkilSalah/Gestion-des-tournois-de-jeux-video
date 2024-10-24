@@ -46,7 +46,7 @@ public class PlayerView {
                     break;
                 case 5:
                     LoggerUtil.logInfo("Quitter le menu des joueurs.");
-                    break;
+                    return;
                 default:
                     LoggerUtil.logError("Option invalide, veuillez choisir entre 1 et 5.");
             }

@@ -9,7 +9,7 @@ public class JpaUtil {
     private EntityManagerFactory emf;
 
     private JpaUtil(){
-        emf = Persistence.createEntityManagerFactory("MyPersistance");
+        emf = Persistence.createEntityManagerFactory("Akil");
     }
 
     public static JpaUtil getInstance(){

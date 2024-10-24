@@ -21,7 +21,7 @@ public class GameView {
             System.out.println("2. Mettre à jour un jeu");
             System.out.println("3. Supprimer un jeu");
             System.out.println("4. Afficher tous les jeux");
-            System.out.println("5. Quitter le menu des jeux");
+            System.out.println("5. Quitter");
             System.out.print("Choisissez une option : ");
 
             choice = ValidationUtil.validationInt();
@@ -39,8 +39,8 @@ public class GameView {
                     displayAllGames();
                     break;
                 case 5:
-                    LoggerUtil.logInfo("Au revoir !");
-                    break;
+                    LoggerUtil.logInfo("Quitter le menu des jeux");
+                    return;
                 default:
                     LoggerUtil.logInfo("Option invalide, veuillez réessayer.");
             }
@@ -154,12 +154,4 @@ public class GameView {
             games.forEach(System.out::println);
         }
     }
-
-
-
-
-
-
-
-
 }
