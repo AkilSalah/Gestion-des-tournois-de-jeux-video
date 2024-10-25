@@ -7,12 +7,14 @@ import org.GestionDesTournois.Utils.ValidationUtil;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class GameView {
     private final GameService gameService;
     public GameView(GameService gameService){
     this.gameService = gameService;
     }
+    Scanner scanner = new Scanner(System.in);
     public void gameMenu() {
         int choice;
         do {

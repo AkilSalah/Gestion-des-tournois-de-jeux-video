@@ -12,6 +12,7 @@ import org.GestionDesTournois.Utils.ValidationUtil;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class TournoiView {
     private TournoiMetierImpl tournoiService;
@@ -20,6 +21,7 @@ public class TournoiView {
         this.tournoiService = tournoiService;
         this.gameService = gameService;
     }
+    Scanner scanner = new Scanner(System.in);
 
     public void tournoiMenu() {
         int choice;
@@ -87,6 +89,7 @@ public class TournoiView {
             }
         } while (true);
 
+
         LocalDate dateFin = null;
         do {
             LoggerUtil.logInfo("Entrez la date de fin pour ce tournoi (format : dd/MM/yyyy) : ");
@@ -102,6 +105,7 @@ public class TournoiView {
                 LoggerUtil.logInfo("La date est invalide. Veuillez réessayer.");
             }
         } while (true);
+
         LoggerUtil.logInfo("Entrez le nombres des spectateurs du tournoi : ");
         int spectateurs = ValidationUtil.validationInt();
         LoggerUtil.logInfo("Entrez la dureé estimée du tournoi : ");
@@ -115,10 +119,10 @@ public class TournoiView {
         LoggerUtil.logInfo("2.EN_COURS");
         LoggerUtil.logInfo("3.TERMINE");
         LoggerUtil.logInfo("4.ANNULE");
-        int choice = ValidationUtil.validationInt();
         StatutTournoi statutTournoi = null;
         do {
-            if (choice ==1 ){
+            int choice = ValidationUtil.validationInt();
+            if (choice == 1 ){
                 statutTournoi = StatutTournoi.PLANIFIE;
             } else if (choice == 2) {
                 statutTournoi = StatutTournoi.EN_COURS;
@@ -127,7 +131,7 @@ public class TournoiView {
             } else if (choice==4) {
                 statutTournoi = StatutTournoi.ANNULE;
             }else {
-                LoggerUtil.logInfo("Option invalide, veuillez choisir une option.");
+                LoggerUtil.logInfo("Option invalide, veuillez choisir une option (1-4).");
             }
         }while (statutTournoi == null);
 

@@ -9,14 +9,13 @@ public class ValidationUtil {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String ValidationString() {
-        String input = scanner.nextLine();
-        while (input == null || input.trim().isEmpty()) {
-            LoggerUtil.logWarn("L'entrée ne doit pas être vide . Veuillez entrer une valeur valide.");
-            input = scanner.nextLine();
+        String input = scanner.nextLine().trim();
+        while (input.isEmpty()) {
+            System.out.print("Erreur : vous devez entrer une chaîne de caractères non vide : ");
+            input = scanner.nextLine().trim();
         }
         return input;
     }
-
 
     public static int validationInt() {
         while (true) {
@@ -25,6 +24,7 @@ public class ValidationUtil {
                 if (value <= 0) {
                     LoggerUtil.logWarn("Veuillez entrer un nombre entier supérieur à zéro.");
                 }
+                scanner.nextLine();
                 return  value;
             } catch (InputMismatchException e) {
                 LoggerUtil.logWarn("Veuillez entrer un nombre entier valide.");

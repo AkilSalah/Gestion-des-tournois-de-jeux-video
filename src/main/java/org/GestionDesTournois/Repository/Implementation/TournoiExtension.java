@@ -18,7 +18,7 @@ public class TournoiExtension implements TournoiInterface {
            Tournoi tournoi = em.find(Tournoi.class,tournoiId);
            if (tournoi != null){
                int teamNb = tournoi.getTeams().size();
-               int dureMoyenne = tournoi.getDureeEstimee();
+               int dureMoyenne = tournoi.getGame().getDureeMoyenneMatch();
                int tempsPause = tournoi.getTempsPause();
                int difficulte = tournoi.getGame().getDifficulte();
                int tempsCeremonies = tournoi.getTempsCeremonie();
