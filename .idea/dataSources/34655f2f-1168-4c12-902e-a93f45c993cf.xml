@@ -171,7 +171,7 @@
     </schema>
     <schema id="163" parent="2" name="PUBLIC">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-10-25.07:16:58</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-10-25.21:23:55</LastIntrospectionLocalTimestamp>
     </schema>
     <user id="164" parent="2" name="TEST">
       <Admin>1</Admin>
@@ -2026,7 +2026,7 @@
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(4)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(7)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="656" parent="200" name="DIFFICULTE">
@@ -2060,7 +2060,7 @@
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(3)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(5)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="662" parent="201" name="AGE">
@@ -2104,7 +2104,7 @@
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(3)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(4)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="670" parent="202" name="CLASSEMENT">
@@ -2152,7 +2152,7 @@
       <Position>1</Position>
       <SequenceInline>1</SequenceInline>
       <SequenceDasType>INTEGER|0s</SequenceDasType>
-      <SequenceSequenceIdentity>1(3)</SequenceSequenceIdentity>
+      <SequenceSequenceIdentity>1(7)</SequenceSequenceIdentity>
       <SequenceStartValue>1</SequenceStartValue>
     </column>
     <column id="679" parent="203" name="DATEDEBUT">

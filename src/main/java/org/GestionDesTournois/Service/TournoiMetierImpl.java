@@ -1,5 +1,6 @@
 package org.GestionDesTournois.Service;
 
+import org.GestionDesTournois.Models.Team;
 import org.GestionDesTournois.Models.Tournoi;
 import org.GestionDesTournois.Repository.Implementation.TournoiExtension;
 import org.GestionDesTournois.Repository.Implementation.TournoiImplementation;
@@ -20,8 +21,8 @@ public class TournoiMetierImpl implements TournoiMetier {
     public double obtenirdureeEstimeeTournoi(int tournoiId) {
         return tournoiExtension.calculerDureeEstimeeTournoi(tournoiId);
     }
-    public boolean addTournoi(Tournoi tournoi) {
-        return tournoiRepository.insertTournoi(tournoi);
+    public boolean addTournoi(Tournoi tournoi,List<Team> teams) {
+        return tournoiRepository.insertTournoi(tournoi,teams);
     }
 
     public boolean modifyTournoi(Tournoi tournoi) {
@@ -44,5 +45,7 @@ public class TournoiMetierImpl implements TournoiMetier {
     public Optional<Tournoi> getTournoiById(int id) {
         return tournoiRepository.getTournoiById(id);
     }
-
+    public boolean removeTeamFromTournoi(int tournoiId, int teamId) {
+        return tournoiRepository.deleteEquipe(tournoiId,teamId);
+    }
 }

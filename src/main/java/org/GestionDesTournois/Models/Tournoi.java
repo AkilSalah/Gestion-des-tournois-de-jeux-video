@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,7 +37,7 @@ public class Tournoi {
     private int nombreSpectateurs;
 
     @OneToMany(mappedBy = "tournoi", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Team> teams;
+    private List<Team> teams = new ArrayList<>();
 
     @Min(value = 0, message = "La durée estimée doit être positive ou zéro.")
     private int dureeEstimee;

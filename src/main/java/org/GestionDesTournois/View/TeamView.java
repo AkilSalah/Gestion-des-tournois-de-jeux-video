@@ -1,5 +1,6 @@
 package org.GestionDesTournois.View;
 
+import org.GestionDesTournois.Models.Player;
 import org.GestionDesTournois.Models.Team;
 import org.GestionDesTournois.Models.Tournoi;
 import org.GestionDesTournois.Service.TeamService;
@@ -7,6 +8,7 @@ import org.GestionDesTournois.Service.TournoiMetierImpl;
 import org.GestionDesTournois.Utils.LoggerUtil;
 import org.GestionDesTournois.Utils.ValidationUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,9 +26,10 @@ public class TeamView {
             LoggerUtil.logInfo("\n--- Menu Équipe ---");
             LoggerUtil.logInfo("1. Ajouter une équipe");
             LoggerUtil.logInfo("2. Mettre à jour une équipe");
-            LoggerUtil.logInfo("3. Supprimer une équipe");
-            LoggerUtil.logInfo("4. Afficher toutes les équipes");
-            LoggerUtil.logInfo("5. Quitter");
+            LoggerUtil.logInfo("3. Afficher toutes les équipes");
+            LoggerUtil.logInfo("4. Supprimer un joueur dans une équipe");
+            LoggerUtil.logInfo("5. Supprimer une équipe");
+            LoggerUtil.logInfo("6. Quitter");
 
             LoggerUtil.logInfo("Veuillez sélectionner une option : ");
             int choix = ValidationUtil.validationInt();
@@ -39,12 +42,15 @@ public class TeamView {
                     updateTeam();
                     break;
                 case 3:
-                    deleteTeam();
-                    break;
-                case 4:
                     displayAllTeams();
                     break;
+                case 4:
+                    removePlayerFromTeam();
+                    break;
                 case 5:
+                    deleteTeam();
+                    break;
+                case 6:
                     LoggerUtil.logInfo("Quitter le menu des équipes");
                     return;
                 default:
@@ -55,19 +61,33 @@ public class TeamView {
 
     private void addTeam() {
         LoggerUtil.logInfo("\n--- Ajouter une équipe ---");
+
         LoggerUtil.logInfo("Entrez le nom de l'équipe : ");
         String nom = ValidationUtil.ValidationString();
-        LoggerUtil.logInfo("Entrez le classement de l'équipe  : ");
+
+        LoggerUtil.logInfo("Entrez le classement de l'équipe : ");
         int classement = ValidationUtil.validationInt();
+
+        LoggerUtil.logInfo("Voulez-vous associer cette équipe à un tournoi ? (O/N) : ");
+        String response = ValidationUtil.ValidationString().toUpperCase();
+
         Tournoi tournoi = null;
-        while (tournoi == null){
-            LoggerUtil.logInfo("Entrez le id du tournoi ou l'équipe se jouer : ");
-            int tournoiId = ValidationUtil.validationInt();
-            Optional<Tournoi> tournoiOptional = tournoiMetier.getTournoiById(tournoiId);
-            if (tournoiOptional.isPresent()){
-                tournoi = tournoiOptional.get();
-            }else {
-                LoggerUtil.logError("Tournoi introuvable. Veuillez réessayer avec un ID valide.");
+        if (response.equals("O")) {
+            while (tournoi == null) {
+                LoggerUtil.logInfo("Entrez l'ID du tournoi où l'équipe va jouer : ");
+                int tournoiId = ValidationUtil.validationInt();
+                Optional<Tournoi> tournoiOptional = tournoiMetier.getTournoiById(tournoiId);
+                if (tournoiOptional.isPresent()) {
+                    tournoi = tournoiOptional.get();
+                    LoggerUtil.logInfo("Tournoi trouvé : " + tournoi.getTitle());
+                } else {
+                    LoggerUtil.logError("Tournoi introuvable. Veuillez réessayer avec un ID valide.");
+                    LoggerUtil.logInfo("Voulez-vous réessayer ? (O/N) : ");
+                    String retry = ValidationUtil.ValidationString().toUpperCase();
+                    if (!retry.equals("O")) {
+                        break;
+                    }
+                }
             }
         }
 
@@ -76,13 +96,37 @@ public class TeamView {
         team.setClassement(classement);
         team.setTournoi(tournoi);
 
-        boolean isAdded = teamService.addTeam(team);
+        List<Player> players = new ArrayList<>();
+        while (true) {
+            LoggerUtil.logInfo("Voulez-vous ajouter un joueur à cette équipe ? (O/N) : ");
+            String playerResponse = ValidationUtil.ValidationString().toUpperCase();
+            if (!playerResponse.equals("O")) {
+                break;
+            }
+
+            LoggerUtil.logInfo("Entrez le Pseudo du joueur : ");
+            String playerName = ValidationUtil.ValidationString();
+
+            LoggerUtil.logInfo("Entrez l'âge du joueur : ");
+            int age = ValidationUtil.validationInt();
+
+            Player player = new Player();
+            player.setPseudo(playerName);
+            player.setAge(age);
+            player.setEquipe(team);
+            players.add(player);
+        }
+        team.setPlayers(players);
+
+        boolean isAdded = teamService.addTeam(team, players);
         if (isAdded) {
             LoggerUtil.logInfo("L'équipe a été ajoutée avec succès !");
+
         } else {
             LoggerUtil.logError("Erreur lors de l'ajout de l'équipe.");
         }
     }
+
 
     private void updateTeam() {
         LoggerUtil.logInfo("\n--- Mettre à jour une équipe ---");
@@ -106,7 +150,7 @@ public class TeamView {
         if (!newClassementInput.trim().isEmpty()) {
                 int newClassement = Integer.parseInt(newClassementInput);
                 existingTeam.setClassement(newClassement);
-            }
+        }
 
 
         LoggerUtil.logInfo("Voulez-vous modifier le tournoi associé à cette équipe ? (O/N) : ");
@@ -172,4 +216,38 @@ public class TeamView {
             });
         }
     }
+    private void removePlayerFromTeam() {
+        LoggerUtil.logInfo("\n--- Supprimer un joueur d'une équipe ---");
+        LoggerUtil.logInfo("Entrez l'ID de l'équipe : ");
+        int teamId = ValidationUtil.validationInt();
+        Optional<Team> teamOptional = teamService.getTeamById(teamId);
+
+        if (teamOptional.isEmpty()) {
+            LoggerUtil.logError("Équipe non trouvée avec l'ID fourni.");
+            return;
+        }
+
+        Team team = teamOptional.get();
+        List<Player> players = team.getPlayers();
+
+        if (players.isEmpty()) {
+            LoggerUtil.logInfo("Aucun joueur trouvé dans cette équipe.");
+            return;
+        }
+
+        LoggerUtil.logInfo("Liste des joueurs dans l'équipe '" + team.getNom() + "':");
+        players.forEach(player -> LoggerUtil.logInfo(player.toString()));
+        LoggerUtil.logInfo("Entrez l'ID du joueur à supprimer : ");
+        int joueurId = ValidationUtil.validationInt();
+        boolean isDeleted = teamService.removePlayerFromTeam(joueurId, teamId);
+
+        if (isDeleted) {
+            LoggerUtil.logInfo("Le joueur a été supprimé de la liste des joueurs de l'équipe.");
+        } else {
+            LoggerUtil.logError("Échec de la suppression du joueur.");
+        }
+    }
+
+
+
 }

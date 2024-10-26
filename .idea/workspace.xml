@@ -5,15 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9b2bd5-75a4-4c75-b68a-fc052096f6e1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/GestionDesTournois_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Conception/GestionDesTournois_classe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Conception/GestionDesTournois_useCase.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/34655f2f-1168-4c12-902e-a93f45c993cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/34655f2f-1168-4c12-902e-a93f45c993cf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/tournoi.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/tournoi.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/tournoi.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/tournoi.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Tournoi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Models/Tournoi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TeamImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TeamImplementation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiExtension.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Implementation/TournoiImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TeamInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TeamInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TournoiInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Repository/Interfaces/TournoiInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TeamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetierImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Service/TournoiMetierImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Utils/ValidationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/Utils/ValidationUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/TeamView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/TeamView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/TournoiView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/GestionDesTournois/View/TournoiView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +78,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/ycode/Java/GestionDesTournois/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.archetype.catalogs&quot;,
@@ -82,6 +94,9 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.GestionDesTournois.Models" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ycode\Java\GestionDesTournois\Conception" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -131,7 +146,8 @@
       <workItem from="1729755465588" duration="5861000" />
       <workItem from="1729761776310" duration="6583000" />
       <workItem from="1729773394201" duration="14022000" />
-      <workItem from="1729805256307" duration="12461000" />
+      <workItem from="1729805256307" duration="29819000" />
+      <workItem from="1729894871535" duration="7878000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,6 @@
 package org.GestionDesTournois.Service;
 
+import org.GestionDesTournois.Models.Player;
 import org.GestionDesTournois.Models.Team;
 import org.GestionDesTournois.Repository.Implementation.TeamImplementation;
 
@@ -13,8 +14,8 @@ public class TeamService {
         this.teamRepository = teamRepository;
     }
 
-    public boolean addTeam(Team team) {
-        return teamRepository.insertTeam(team);
+    public boolean addTeam(Team team,List<Player> players) {
+        return teamRepository.insertTeam(team,players);
     }
 
     public boolean modifyTeam(Team team) {
@@ -36,5 +37,9 @@ public class TeamService {
 
     public Optional<Team> getTeamById(int id) {
         return teamRepository.getTeamById(id);
+    }
+
+    public boolean removePlayerFromTeam(int teamId, int playerId) {
+        return teamRepository.deleteJoueur(teamId,playerId);
     }
 }

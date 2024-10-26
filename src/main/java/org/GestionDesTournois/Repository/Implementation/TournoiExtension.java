@@ -1,6 +1,7 @@
 package org.GestionDesTournois.Repository.Implementation;
 
 import jakarta.persistence.EntityManager;
+import org.GestionDesTournois.Models.Team;
 import org.GestionDesTournois.Models.Tournoi;
 import org.GestionDesTournois.Repository.Interfaces.TournoiInterface;
 import org.GestionDesTournois.Utils.JpaUtil;
@@ -31,7 +32,7 @@ public class TournoiExtension implements TournoiInterface {
     }
 
     @Override
-    public boolean insertTournoi(Tournoi tournoi) {
+    public boolean insertTournoi(Tournoi tournoi,List<Team> teams) {
         return false;
     }
 
@@ -53,5 +54,10 @@ public class TournoiExtension implements TournoiInterface {
     @Override
     public Optional<Tournoi> getTournoiById(int id) {
         return Optional.empty();
+    }
+
+    @Override
+    public boolean deleteEquipe(int equipeId, int tournoiId) {
+        return false;
     }
 }

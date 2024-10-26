@@ -2,10 +2,13 @@ package org.GestionDesTournois.Repository.Implementation;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import org.GestionDesTournois.Models.Player;
 import org.GestionDesTournois.Models.Team;
 import org.GestionDesTournois.Repository.Interfaces.TeamInterface;
 import org.GestionDesTournois.Utils.JpaUtil;
+import org.GestionDesTournois.Utils.LoggerUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,11 +17,18 @@ public class TeamImplementation implements TeamInterface {
         return JpaUtil.getInstance().getEntityManager();
     }
     @Override
-    public boolean insertTeam(Team team) {
+    public boolean insertTeam(Team team, List<Player> players) {
         EntityManager em = getEntityManager();
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
+
+            for (Player player : players) {
+                player.setEquipe(team);
+            }
+
+            team.getPlayers().addAll(players);
+
             em.persist(team);
             transaction.commit();
             return true;
@@ -34,6 +44,7 @@ public class TeamImplementation implements TeamInterface {
             }
         }
     }
+
     @Override
     public boolean updateTeam(Team team) {
         EntityManager em = getEntityManager();
@@ -99,15 +110,56 @@ public class TeamImplementation implements TeamInterface {
     }
 
     @Override
-    public Optional<Team> getTeamById(int id) {
+    public Optional<Team> getTeamById(int teamId) {
+        EntityManager em = getEntityManager();
+        Team team = em.find(Team.class, teamId);
+        if (team != null) {
+            team.getPlayers().size();
+        }
+        return Optional.ofNullable(team);
+    }
+
+    @Override
+    public boolean deleteJoueur(int joueurId, int teamId) {
         EntityManager em = getEntityManager();
         try {
-            Team team = em.find(Team.class, id);
-            return Optional.ofNullable(team);
-        } finally {
-            if (em.isOpen()) {
-                em.close();
+            em.getTransaction().begin();
+
+            Optional<Team> teamOptional = getTeamById(teamId);
+            if (teamOptional.isPresent()) {
+                Team team = teamOptional.get();
+                Player playerToRemove = null;
+
+                for (Player player : new ArrayList<>(team.getPlayers())) {
+                    if (player.getId() == joueurId) {
+                        playerToRemove = player;
+                        break;
+                    }
+                }
+
+                if (playerToRemove != null) {
+                    team.getPlayers().remove(playerToRemove);
+
+                    Player managedPlayer = em.find(Player.class, joueurId);
+                    if (managedPlayer != null) {
+                        managedPlayer.setEquipe(null);
+                    }
+
+                    em.merge(team);
+                    em.getTransaction().commit();
+                    return true;
+                } else {
+                    LoggerUtil.logInfo("Joueur non trouvé dans l'équipe.");
+                }
+            } else {
+                LoggerUtil.logInfo("Équipe non trouvée.");
             }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
+
+
 }

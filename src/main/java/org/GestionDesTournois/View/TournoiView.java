@@ -1,15 +1,15 @@
 package org.GestionDesTournois.View;
 
-import org.GestionDesTournois.Models.Game;
-import org.GestionDesTournois.Models.StatutTournoi;
-import org.GestionDesTournois.Models.Tournoi;
+import org.GestionDesTournois.Models.*;
 import org.GestionDesTournois.Service.GameService;
+import org.GestionDesTournois.Service.TeamService;
 import org.GestionDesTournois.Service.TournoiMetierImpl;
 import org.GestionDesTournois.Utils.DateUtil;
 import org.GestionDesTournois.Utils.LoggerUtil;
 import org.GestionDesTournois.Utils.ValidationUtil;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -17,9 +17,11 @@ import java.util.Scanner;
 public class TournoiView {
     private TournoiMetierImpl tournoiService;
     private GameService gameService;
-    public TournoiView(TournoiMetierImpl tournoiService,GameService gameService) {
+    private TeamService teamService;
+    public TournoiView(TournoiMetierImpl tournoiService,GameService gameService,TeamService teamService) {
         this.tournoiService = tournoiService;
         this.gameService = gameService;
+        this.teamService = teamService;
     }
     Scanner scanner = new Scanner(System.in);
 
@@ -29,10 +31,11 @@ public class TournoiView {
             LoggerUtil.logInfo("\n--- Menu Gestion des Tournoi ---");
             LoggerUtil.logInfo("1. Ajouter une tournoi");
             LoggerUtil.logInfo("2. Mettre à jour une tournoi");
-            LoggerUtil.logInfo("3. Supprimer une tournoi");
-            LoggerUtil.logInfo("4. Afficher tous les tournois");
-            LoggerUtil.logInfo("5. Calcul de la durée totale estimée du tournoi");
-            LoggerUtil.logInfo("6. Quitter");
+            LoggerUtil.logInfo("3. Afficher tous les tournois");
+            LoggerUtil.logInfo("4. Calcul de la durée totale estimée du tournoi");
+            LoggerUtil.logInfo("5. Supprimer une équipe exist dans une tournoi");
+            LoggerUtil.logInfo("6. Supprimer une tournoi");
+            LoggerUtil.logInfo("7. Quitter");
             LoggerUtil.logInfo("Choisissez une option : ");
 
             choice = ValidationUtil.validationInt();
@@ -45,113 +48,155 @@ public class TournoiView {
                     updateTournoi();
                     break;
                 case 3:
-                    deleteTournoi();
-                    break;
-                case 4:
                     displayTournois();
                     break;
-                case 5:
+                case 4:
                     calculeDureeEstimee();
                     break;
+                case 5:
+                    removeTeamFromTournoi();
+                    break;
                 case 6:
+                    deleteTournoi();
+                    break;
+                case 7:
                     LoggerUtil.logInfo("Quitter le menu des tournois.");
                     return;
                 default:
                     LoggerUtil.logError("Option invalide, veuillez choisir entre 1 et 5.");
             }
-        } while (choice != 6);
+        } while (choice != 7);
     }
 
     private void addTournoi() {
         LoggerUtil.logInfo("\n--- Ajouter Tournoi ---");
-        LoggerUtil.logInfo("Entrez le titre du tournoi : ");
-        String titre = ValidationUtil.ValidationString();
-        Game game = null;
-        while (game == null){
-            LoggerUtil.logInfo("Entrez le ID du jeu que vous voulez ajouter à cette tournoi ");
-            int gameId = ValidationUtil.validationInt();
-            Optional<Game> optionalGame = gameService.getGameById(gameId);
-            if (optionalGame.isPresent()){
-                game = optionalGame.get();
-            }else {
-                LoggerUtil.logError("Le jeu n'existe pas");
-            }
-        }
-        LocalDate dateDebut = null;
-        do {
-            LoggerUtil.logInfo("Entrez la date de debut pour ce tournoi (format : dd/MM/yyyy) : ");
-            String date = ValidationUtil.ValidationString();
-            if (DateUtil.isValidDate(date)) {
-                dateDebut = DateUtil.dateValidation(date);
-                break;
-            } else {
-                LoggerUtil.logInfo("La date est invalide. Veuillez réessayer.");
-            }
-        } while (true);
 
+        try {
+            Tournoi tournoi = new Tournoi();
 
-        LocalDate dateFin = null;
-        do {
-            LoggerUtil.logInfo("Entrez la date de fin pour ce tournoi (format : dd/MM/yyyy) : ");
-            String date = ValidationUtil.ValidationString();
-            if (DateUtil.isValidDate(date)) {
-                dateFin = DateUtil.dateValidation(date);
-                if (!dateFin.isBefore(dateDebut)) {
-                    break;
+            LoggerUtil.logInfo("Entrez le titre du tournoi : ");
+            String titre = ValidationUtil.ValidationString();
+            tournoi.setTitle(titre);
+
+            Game game = null;
+            while (game == null) {
+                LoggerUtil.logInfo("Entrez le ID du jeu que vous voulez ajouter à ce tournoi : ");
+                int gameId = ValidationUtil.validationInt();
+                Optional<Game> optionalGame = gameService.getGameById(gameId);
+                if (optionalGame.isPresent()) {
+                    game = optionalGame.get();
+                    tournoi.setGame(game);
                 } else {
-                    LoggerUtil.logWarn("La date de fin ne peut pas être antérieure à la date de début. Veuillez réessayer.");
+                    LoggerUtil.logError("Le jeu n'existe pas, veuillez réessayer");
                 }
+            }
+
+            LocalDate dateDebut = null;
+            while (dateDebut == null) {
+                LoggerUtil.logInfo("Entrez la date de début (format : dd/MM/yyyy) : ");
+                String dateStr = ValidationUtil.ValidationString();
+                if (DateUtil.isValidDate(dateStr)) {
+                    dateDebut = DateUtil.dateValidation(dateStr);
+                    tournoi.setDateDebut(dateDebut);
+                } else {
+                    LoggerUtil.logError("Format de date invalide, veuillez réessayer");
+                }
+            }
+
+            LocalDate dateFin = null;
+            while (dateFin == null) {
+                LoggerUtil.logInfo("Entrez la date de fin (format : dd/MM/yyyy) : ");
+                String dateStr = ValidationUtil.ValidationString();
+                if (DateUtil.isValidDate(dateStr)) {
+                    dateFin = DateUtil.dateValidation(dateStr);
+                    if (dateFin.isBefore(dateDebut)) {
+                        LoggerUtil.logError("La date de fin doit être après la date de début");
+                        continue;
+                    }
+                    tournoi.setDateFin(dateFin);
+                } else {
+                    LoggerUtil.logError("Format de date invalide, veuillez réessayer");
+                }
+            }
+
+            LoggerUtil.logInfo("Entrez le nombre des spectateurs : ");
+            int spectateurs = ValidationUtil.validationInt();
+            tournoi.setNombreSpectateurs(spectateurs);
+
+            LoggerUtil.logInfo("Entrez la durée estimée (en minutes) : ");
+            int dureeEstimee = ValidationUtil.validationInt();
+            tournoi.setDureeEstimee(dureeEstimee);
+
+            LoggerUtil.logInfo("Entrez le temps de pause (en minutes) : ");
+            int tempsPause = ValidationUtil.validationInt();
+            tournoi.setTempsPause(tempsPause);
+
+            LoggerUtil.logInfo("Entrez le temps de cérémonie (en minutes) : ");
+            int tempsCeremonie = ValidationUtil.validationInt();
+            tournoi.setTempsCeremonie(tempsCeremonie);
+
+            LoggerUtil.logInfo("Choisissez le statut du tournoi :");
+            LoggerUtil.logInfo("1. PLANIFIE");
+            LoggerUtil.logInfo("2. EN_COURS");
+            LoggerUtil.logInfo("3. TERMINE");
+            LoggerUtil.logInfo("4. ANNULE");
+
+            StatutTournoi statutTournoi = null;
+            while (statutTournoi == null) {
+                int choix = ValidationUtil.validationInt();
+                switch (choix) {
+                    case 1:
+                        statutTournoi = StatutTournoi.PLANIFIE;
+                        break;
+                    case 2:
+                        statutTournoi = StatutTournoi.EN_COURS;
+                        break;
+                    case 3:
+                        statutTournoi = StatutTournoi.TERMINE;
+                        break;
+                    case 4:
+                        statutTournoi = StatutTournoi.ANNULE;
+                        break;
+                    default:
+                        LoggerUtil.logError("Option invalide, veuillez choisir entre 1 et 4");
+                }
+            }
+            tournoi.setStatut(statutTournoi);
+
+            List<Team> teams = new ArrayList<>();
+            while (true) {
+                LoggerUtil.logInfo("\nVoulez-vous ajouter une équipe au tournoi ? (O/N) : ");
+                String reponse = ValidationUtil.ValidationString();
+                if (!reponse.equalsIgnoreCase("O")) {
+                    break;
+                }
+
+                LoggerUtil.logInfo("Entrez l'ID de l'équipe à ajouter : ");
+                int teamId = ValidationUtil.validationInt();
+                Optional<Team> optionalTeam = teamService.getTeamById(teamId);
+
+                if (optionalTeam.isPresent()) {
+                    Team team = optionalTeam.get();
+                    teams.add(team);
+                    LoggerUtil.logInfo("Équipe ajoutée avec succès");
+                } else {
+                    LoggerUtil.logError("Équipe introuvable");
+                }
+            }
+            tournoi.setTeams(teams);
+
+            boolean isAdded = tournoiService.addTournoi(tournoi,teams);
+            if (isAdded) {
+                LoggerUtil.logInfo("Le tournoi a été ajouté avec succès !");
             } else {
-                LoggerUtil.logInfo("La date est invalide. Veuillez réessayer.");
+                LoggerUtil.logError("Erreur lors de l'ajout du tournoi");
             }
-        } while (true);
 
-        LoggerUtil.logInfo("Entrez le nombres des spectateurs du tournoi : ");
-        int spectateurs = ValidationUtil.validationInt();
-        LoggerUtil.logInfo("Entrez la dureé estimée du tournoi : ");
-        int dureEstimee = ValidationUtil.validationInt();
-        LoggerUtil.logInfo("Entrez le temps de pause du tournoi : ");
-        int tempsPause = ValidationUtil.validationInt();
-        LoggerUtil.logInfo("Entrez le temps de cérémonie du tournoi : ");
-        int tempsCeremonie = ValidationUtil.validationInt();
-        LoggerUtil.logInfo("Entrez le statut de la tournoi : ");
-        LoggerUtil.logInfo("1.PLANIFIE");
-        LoggerUtil.logInfo("2.EN_COURS");
-        LoggerUtil.logInfo("3.TERMINE");
-        LoggerUtil.logInfo("4.ANNULE");
-        StatutTournoi statutTournoi = null;
-        do {
-            int choice = ValidationUtil.validationInt();
-            if (choice == 1 ){
-                statutTournoi = StatutTournoi.PLANIFIE;
-            } else if (choice == 2) {
-                statutTournoi = StatutTournoi.EN_COURS;
-            } else if (choice == 3) {
-                statutTournoi = StatutTournoi.TERMINE;
-            } else if (choice==4) {
-                statutTournoi = StatutTournoi.ANNULE;
-            }else {
-                LoggerUtil.logInfo("Option invalide, veuillez choisir une option (1-4).");
-            }
-        }while (statutTournoi == null);
-
-        Tournoi tournoi = new Tournoi();
-        tournoi.setDateDebut(dateDebut);
-        tournoi.setDateFin(dateFin);
-        tournoi.setGame(game);
-        tournoi.setDureeEstimee(dureEstimee);
-        tournoi.setTempsPause(tempsPause);
-        tournoi.setTempsCeremonie(tempsCeremonie);
-        tournoi.setStatut(statutTournoi);
-        tournoi.setTitle(titre);
-        tournoi.setNombreSpectateurs(spectateurs);
-        boolean isAdded = tournoiService.addTournoi(tournoi);
-        if (isAdded) {
-            LoggerUtil.logInfo("Le tournoi a été ajouter avec succès");
-        }else {
-            LoggerUtil.logError("Erreur lors de l'ajout du tournoi.");
+        } catch (Exception e) {
+            LoggerUtil.logError("Une erreur est survenue : " + e.getMessage());
         }
     }
+
     public void updateTournoi() {
         LoggerUtil.logInfo("\n--- Mettre à jour un tournoi ---");
         LoggerUtil.logInfo("Entrez l'ID du tournoi à mettre à jour : ");
@@ -164,14 +209,12 @@ public class TournoiView {
 
         Tournoi tournoi = optionalTournoi.get();
 
-        // Update Title
         LoggerUtil.logInfo("Entrez le nouveau titre du tournoi (actuel : " + tournoi.getTitle() + ") : ");
         String newTitle = ValidationUtil.ValidationString();
         if (!newTitle.isEmpty()) {
             tournoi.setTitle(newTitle);
         }
 
-        // Update Game
         LoggerUtil.logInfo("Voulez-vous modifier le jeu associé ? (actuel : " + tournoi.getGame().getNom() + ") (y/n) : ");
         String modifyGame = ValidationUtil.ValidationString();
         if (modifyGame.equalsIgnoreCase("y")) {
@@ -189,7 +232,6 @@ public class TournoiView {
             }
         }
 
-        // Update DateDebut
         LocalDate dateDebut = null;
         do {
             LoggerUtil.logInfo("Entrez la nouvelle date de début (actuelle : " + tournoi.getDateDebut() + ", format : dd/MM/yyyy) : ");
@@ -205,7 +247,6 @@ public class TournoiView {
             }
         } while (true);
 
-        // Update DateFin
         LocalDate dateFin = null;
         do {
             LoggerUtil.logInfo("Entrez la nouvelle date de fin (actuelle : " + tournoi.getDateFin() + ", format : dd/MM/yyyy) : ");
@@ -234,7 +275,6 @@ public class TournoiView {
             tournoi.setNombreSpectateurs(spectateurs);
         }
 
-        // Update Estimated Duration
         LoggerUtil.logInfo("Entrez la nouvelle durée estimée (actuelle : " + tournoi.getDureeEstimee() + ") : ");
         String newDureeEstimee = ValidationUtil.ValidationString();
         if (!newDureeEstimee.isEmpty()) {
@@ -242,7 +282,6 @@ public class TournoiView {
             tournoi.setDureeEstimee(dureeEstimee);
         }
 
-        // Update Break Time
         LoggerUtil.logInfo("Entrez le nouveau temps de pause (actuel : " + tournoi.getTempsPause() + ") : ");
         String newTempsPause = ValidationUtil.ValidationString();
         if (!newTempsPause.isEmpty()) {
@@ -250,7 +289,6 @@ public class TournoiView {
             tournoi.setTempsPause(tempsPause);
         }
 
-        // Update Ceremony Time
         LoggerUtil.logInfo("Entrez le nouveau temps de cérémonie (actuel : " + tournoi.getTempsCeremonie() + ") : ");
         String newTempsCeremonie = ValidationUtil.ValidationString();
         if (!newTempsCeremonie.isEmpty()) {
@@ -258,7 +296,6 @@ public class TournoiView {
             tournoi.setTempsCeremonie(tempsCeremonie);
         }
 
-        // Update StatutTournoi
         StatutTournoi statutTournoi = null;
         do {
             LoggerUtil.logInfo("Entrez le nouveau statut du tournoi (actuel : " + tournoi.getStatut() + ")");
@@ -282,7 +319,6 @@ public class TournoiView {
             }
         } while (statutTournoi == null);
 
-        // Save Updated Tournament
         boolean isUpdated = tournoiService.modifyTournoi(tournoi);
         if (isUpdated) {
             LoggerUtil.logInfo("Le tournoi a été mis à jour avec succès.");
@@ -336,6 +372,42 @@ public class TournoiView {
             LoggerUtil.logInfo("La tournoi n'existe pas ! ");
         }
     }
+
+    private void removeTeamFromTournoi() {
+        LoggerUtil.logInfo("\n--- Supprimer une équipe d'un tournoi ---");
+
+        LoggerUtil.logInfo("Entrez l'ID du tournoi : ");
+        int tournoiId = ValidationUtil.validationInt();
+
+        Optional<Tournoi> tournoiOptional = tournoiService.getTournoiById(tournoiId);
+        if (tournoiOptional.isEmpty()) {
+            LoggerUtil.logError("Tournoi non trouvé avec l'ID fourni.");
+            return;
+        }
+
+        Tournoi tournoi = tournoiOptional.get();
+        List<Team> teams = tournoi.getTeams();
+        if (teams.isEmpty()) {
+            LoggerUtil.logInfo("Aucune équipe trouvée dans ce tournoi.");
+            return;
+        }
+
+        LoggerUtil.logInfo("Liste des équipes dans le tournoi '" + tournoi.getTitle() + "':");
+        for (Team team : teams) {
+            LoggerUtil.logInfo(team.toString());
+        }
+
+        LoggerUtil.logInfo("Entrez l'ID de l'équipe à supprimer : ");
+        int equipeId = ValidationUtil.validationInt();
+
+        boolean isDeleted = tournoiService.removeTeamFromTournoi(equipeId, tournoiId); // Assuming the method is renamed to deleteEquipe
+        if (isDeleted) {
+            LoggerUtil.logInfo("L'équipe a été supprimée avec succès du tournoi.");
+        } else {
+            LoggerUtil.logError("Échec de la suppression de l'équipe.");
+        }
+    }
+
 
 
 
